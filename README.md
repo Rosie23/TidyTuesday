@@ -1,3 +1,3 @@
 # TidyTuesday
 
-![alt text](https://github.com/Rosie23/TidyTuesday/FlightPlot.png)
+![alt text](https://github.com/Rosie23/TidyTuesday/blob/main/FlightPlot.png)
