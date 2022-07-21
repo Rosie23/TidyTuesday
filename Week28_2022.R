@@ -9,7 +9,7 @@ library(RColorBrewer)
 library(gridExtra)
 library(showtext)
 
-#tuesdata <- tidytuesdayR::tt_load(2022, week = 28)
+tuesdata <- tidytuesdayR::tt_load(2022, week = 28)
 flights <- tuesdata$flights
 flights$STATE_NAME[flights$STATE_NAME == "Türkiye"] <- "Turkey"
 
@@ -204,6 +204,8 @@ patchwork_plots+
 
 ggsave(filename = "Documents/GitHub/TidyTuesday/FlightPlot.png", width = 8, height = 10)  
 
+
+ggsave(filename = "Downloads/FlightPlot.png", width = 14, height = 10)  
 
 
 
