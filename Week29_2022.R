@@ -133,7 +133,9 @@ my_theme <- theme(
   legend.title = element_text(family = "play",color=my_text_colour),
   legend.key.width = unit(1,"cm"),
   plot.title = element_text(family = "play",size=18,hjust=0.5,color=my_text_colour),
-  plot.subtitle = element_text(family = "raleway",size=12,hjust=0.5,color=my_text_colour)
+  plot.subtitle = element_text(family = "raleway",size=12,hjust=0.5,color=my_text_colour),
+  plot.caption = element_text(colour=my_text_colour),
+  legend.text = element_text(colour=my_text_colour,family = "play"),
 )
 
 #Make Plots----
@@ -209,7 +211,8 @@ patchwork_plots+
   plot_annotation(title = 'Green Energy Production Across Europe',
                   subtitle = "Percentage of Total Energy Production from Green energy
        sources (Wind, Solar, Nuclear, Hydro) across Europe",
-                  theme =  my_theme & theme(plot.title = element_text(size = 34,family = "play",face="bold",color=my_text_colour),
+                  theme =  my_theme & theme(plot.title = element_text(size = 34,family = "play",
+                                                                      face="bold",color=my_text_colour),
                                             plot.subtitle = element_text(size = 16,family = "raleway",color=my_text_colour)),
                   caption = "@Rosie_Griffiths | #TidyTuesday Week 29 2022 | Source: NBER")
 
