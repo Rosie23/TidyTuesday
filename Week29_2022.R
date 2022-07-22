@@ -104,13 +104,14 @@ countries_ranked <- countries_ranked %>%
 
 head(percentage_green_2020)
 
+#Get Map data
 world <- ne_countries(scale = "medium", returnclass = "sf")
 Europe <- world[which(world$continent == "Europe"),]
 Europe_energy <- merge(Europe,percentage_green_2020, by.x="iso_a3",by.y="iso3c",all = TRUE)
 
-
 #My Aesthetics----
 background_fill = "azure"
+my_text_colour = "darkslateblue"
 font_add_google("Play", family = "play") #https://fonts.google.com
 font_add_google("Raleway", family = "raleway")
 
@@ -121,7 +122,7 @@ my_theme <- theme(
   axis.text = element_blank(),
   axis.line = element_blank(),
   axis.ticks = element_blank(),
-  axis.title = element_text(family = "play"),
+  axis.title = element_text(family = "play",color=my_text_colour),
   plot.background = element_rect(fill=background_fill),
   panel.background = element_rect(fill=background_fill),
   panel.grid = element_blank(),
@@ -129,10 +130,10 @@ my_theme <- theme(
   legend.box="horizontal",
   plot.margin = margin(1, 1, 1, 1, unit = "line"),
   legend.background = element_rect(fill=background_fill),
-  legend.title = element_text(family = "play"),
+  legend.title = element_text(family = "play",color=my_text_colour),
   legend.key.width = unit(1,"cm"),
-  plot.title = element_text(family = "play",size=18,hjust=0.5),
-  plot.subtitle = element_text(family = "raleway",size=12,hjust=0.5)
+  plot.title = element_text(family = "play",size=18,hjust=0.5,color=my_text_colour),
+  plot.subtitle = element_text(family = "raleway",size=12,hjust=0.5,color=my_text_colour)
 )
 
 #Make Plots----
@@ -146,7 +147,7 @@ ranked_plot <- ggplot(countries_ranked,aes(x=year, y=rank, group = iso3c,colour=
   labs(title="Ranked over the Years",
        x="Year",y="Rank")+
   my_theme+theme(legend.position = "none",
-                 axis.text.x = element_text(family = "play"))
+                 axis.text.x = element_text(family = "play",color=my_text_colour))
 
 map_plot <- ggplot(Europe_energy, aes(fill=perc)) +
   labs(fill='% Green Energy')+
@@ -174,12 +175,12 @@ line_plot <- ggplot(top_12_across_year, aes(x=year, y=value,group=Type,colour=Ty
        subtitle = "Change from fossil fuels to renewable energy sources across the
        top 12 European countries with the largest energy output")+
   my_theme+
-  theme(axis.text.x = element_text(family = "play",angle=45,size=10,hjust = 0.9),
-        axis.text.y = element_text(family = "play",size=8),
+  theme(axis.text.x = element_text(family = "play",angle=45,size=10,hjust = 0.9,color=my_text_colour),
+        axis.text.y = element_text(family = "play",size=8,color=my_text_colour),
         strip.background =element_rect(fill=background_fill),
         legend.position = "bottom",
         legend.key=element_blank(),
-        strip.text = element_text(colour = 'black', family="play",size=12))
+        strip.text = element_text(colour = 'black', family="play",size=12,color=my_text_colour))
 
 
 #Add image
@@ -208,9 +209,9 @@ patchwork_plots+
   plot_annotation(title = 'Green Energy Production Across Europe',
                   subtitle = "Percentage of Total Energy Production from Green energy
        sources (Wind, Solar, Nuclear, Hydro) across Europe",
-                  theme =  my_theme & theme(plot.title = element_text(size = 30,family = "play",face="bold"),
-                                            plot.subtitle = element_text(size = 16,family = "raleway")),
-                  caption = "@Rosie_Griffiths | #TidyTuesday Week 28 2022 | Source: Eurocontrol")
+                  theme =  my_theme & theme(plot.title = element_text(size = 34,family = "play",face="bold",color=my_text_colour),
+                                            plot.subtitle = element_text(size = 16,family = "raleway",color=my_text_colour)),
+                  caption = "@Rosie_Griffiths | #TidyTuesday Week 29 2022 | Source: NBER")
 
 ggsave(filename = "Documents/GitHub/TidyTuesday/EnergyPlot.png", width = 8, height = 10)  
 ggsave(filename = "Downloads/EnergyPlot.png", width = 10, height = 12.5)  
