@@ -112,8 +112,13 @@ Europe_energy <- merge(Europe,percentage_green_2020, by.x="iso_a3",by.y="iso3c",
 #My Aesthetics----
 background_fill = "azure"
 my_text_colour = "darkslateblue"
+
+#My Fonts
 font_add_google("Play", family = "play") #https://fonts.google.com
-font_add_google("Raleway", family = "raleway")
+font_add_google("Poiret One", family = "poiretone")
+
+main_font = "play"
+text_box_font = "poiretone"
 
 my_cols <- c("firebrick","forestgreen","gold")
 names(my_cols) <- c("Fossil Fuel","Renewable","Nuclear")
@@ -122,7 +127,7 @@ my_theme <- theme(
   axis.text = element_blank(),
   axis.line = element_blank(),
   axis.ticks = element_blank(),
-  axis.title = element_text(family = "play",color=my_text_colour),
+  axis.title = element_text(family = main_font,color=my_text_colour),
   plot.background = element_rect(fill=background_fill),
   panel.background = element_rect(fill=background_fill),
   panel.grid = element_blank(),
@@ -130,12 +135,12 @@ my_theme <- theme(
   legend.box="horizontal",
   plot.margin = margin(1, 1, 1, 1, unit = "line"),
   legend.background = element_rect(fill=background_fill),
-  legend.title = element_text(family = "play",color=my_text_colour),
+  legend.title = element_text(family = main_font,color=my_text_colour),
   legend.key.width = unit(1,"cm"),
-  plot.title = element_text(family = "play",size=18,hjust=0.5,color=my_text_colour),
-  plot.subtitle = element_text(family = "raleway",size=12,hjust=0.5,color=my_text_colour),
+  plot.title = element_text(family = main_font, size=18,hjust=0.5,color=my_text_colour),
+  plot.subtitle = element_text(family = text_box_font,size=14,hjust=0.5,color=my_text_colour),
   plot.caption = element_text(colour=my_text_colour),
-  legend.text = element_text(colour=my_text_colour,family = "play"),
+  legend.text = element_text(colour=my_text_colour,family = main_font),
 )
 
 #Make Plots----
@@ -189,7 +194,6 @@ line_plot <- ggplot(top_12_across_year, aes(x=year, y=value,group=Type,colour=Ty
 #my_image <- readPNG("Documents/GitHub/TidyTuesday/Logo.png", native = TRUE)
 
 
-
 patchwork_plots <- map_plot+ranked_plot+line_plot
 
 
@@ -213,9 +217,9 @@ patchwork_plots+
        sources (Wind, Solar, Nuclear, Hydro) across Europe",
                   theme =  my_theme & theme(plot.title = element_text(size = 34,family = "play",
                                                                       face="bold",color=my_text_colour),
-                                            plot.subtitle = element_text(size = 16,family = "raleway",color=my_text_colour)),
+                                            plot.subtitle = element_text(size = 16,family = text_box_font,color=my_text_colour)),
                   caption = "@Rosie_Griffiths | #TidyTuesday Week 29 2022 | Source: NBER")
 
-ggsave(filename = "Documents/GitHub/TidyTuesday/EnergyPlot.png", width = 8, height = 10)  
+ggsave(filename = "Documents/GitHub/TidyTuesday/EnergyPlot.png",width = 10, height = 12.5)  
 ggsave(filename = "Downloads/EnergyPlot.png", width = 10, height = 12.5)  
 
