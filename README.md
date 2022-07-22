@@ -7,3 +7,5 @@
 ## Week 29
 
 ![alt text](https://github.com/Rosie23/TidyTuesday/blob/main/EnergyPlot.png)
+
+![alt text](https://github.com/Rosie23/TidyTuesday/blob/main/EnergyRadarPlot.gif)

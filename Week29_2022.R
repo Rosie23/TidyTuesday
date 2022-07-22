@@ -10,7 +10,8 @@ library(showtext)
 library(sf)
 library(rnaturalearth)
 library(viridis)
-library(sysfonts)
+#library(sysfonts)
+
 showtext_auto()
 
 # 2. Load Data------
@@ -33,10 +34,6 @@ european_countries <- european_countries$iso3c
 european_countries <- european_countries[complete.cases(european_countries)]
 european_countries
 
-electricty_production <- unique(tech$variable)[grep("elec_",unique(tech$variable))]
-fossil <- electricty_production[c(1,3,6)]
-renewable <- electricty_production[c(4,7,8,9)]
-
 #Top Electricity Producing European Countries
 df <- tech %>%
   filter(group=="Production" & variable == "elec_cons" & iso3c %in% european_countries & year == 2000) %>%
@@ -50,7 +47,7 @@ top_12_countries
 #Make data to plot ----
 #Greenest Countries 
 tech$GreenEnergy <- ifelse(tech$variable %in% fossil, "No",
-                    ifelse(tech$variable %in% renewable, "Yes","none"))
+                    ifelse(tech$variable %in% c(renewable,"elec_nuc"), "Yes","none"))
 
 tech$Type <- ifelse(tech$variable %in% fossil, "Fossil Fuel",
                     ifelse(tech$variable %in% renewable, "Renewable",
