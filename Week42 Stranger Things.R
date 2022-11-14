@@ -1,8 +1,8 @@
 #Load Data and Packages
 library(tidyverse)
-#tuesdata <- tidytuesdayR::tt_load(2022, week = 42)
-#episodes <- tuesdata$episodes
-#dialogue <- tuesdata$stranger_things_all_dialogue
+tuesdata <- tidytuesdayR::tt_load(2022, week = 42)
+episodes <- tuesdata$episodes
+dialogue <- tuesdata$stranger_things_all_dialogue
 
 #Get Stranger Things Font
 library(showtext)
@@ -123,8 +123,8 @@ library(patchwork)
 patchwork_plots <- hero_rug_plot + monster_rug_plot + hero_freq_plot + monster_freq_plot
 
 layout <- c(
-  area(t = 1, l = 1, b = 8, r = 5),
-  area(t = 1, l = 6, b = 8, r = 10),
+  area(t = 1, l = 1, b = 7, r = 5),
+  area(t = 1, l = 6, b = 7, r = 10),
   area(t = 8, l = 1, b = 10, r = 5),
   area(t = 8, l = 6, b = 10, r = 10)
 )
@@ -143,7 +143,7 @@ my_plot <- patchwork_plots+
                   theme =  stranger_things_theme()+theme(plot.title = element_text(size=40)),
                   caption = "@Rosie_Griffiths | #TidyTuesday Week 42 2022 | Source: 8flix.com")
 
-ggsave(my_plot, filename = "Stranger_Things_plot3.png", width=6, height=5, dpi=150)
+ggsave(my_plot, filename = "Stranger_Things_plot4.png", width=9, height=8)
 
 #ggsave(plot=hero_plot, filename="Stranger Things Heroes.png")
 #ggsave(plot=monster_plot, filename="Stranger Things Monsters.png")
